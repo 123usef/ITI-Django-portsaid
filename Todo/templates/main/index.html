@@ -1,0 +1,62 @@
+{% extends "main/components/base.html" %} 
+
+
+{% block title %}
+ Index-Page 
+{% endblock  %}
+{% comment %} <title> Ahmed </title> {% endcomment %}
+
+{% block content %}
+<ol class="list-group d-flex flex-row justify-content-around align-items-center mt-3 list-group-numbered"> 
+  {% for cat in categories %}
+    <li class="list-group-item d-flex justify-content-between align-items-start">
+      <div class="ms-2 me-auto">
+        <div class="fw-bold">{{ cat.name }}</div>
+       {{ cat.description }}
+      </div>
+      <span class="badge text-bg-primary rounded-pill">14</span>
+    </li>
+    {% endfor %}
+  
+  </ol>    
+
+
+  <div class="row row-cols-1 p-3 row-cols-md-3 g-4">
+    {% for task in  tasks %}
+      
+      {% if task.status == "PENDING"  %}
+       
+        <div class="col">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">{{task.title}}</h5>
+              <p class="card-text">{{task.description}}</p>
+              <a href='{%  url "detail" task.id  %}' class="btn btn-primary" > View Details </a>
+            </div>
+          </div>
+        </div>
+        {% elif task.status == "IN PROGRESS"  %}
+        <div class="col">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">{{task.title}}</h5>
+              <p class="card-text">{{task.description}}</p>
+            </div>
+          </div>
+        </div>
+
+        {% else %}
+        <div class="col">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">{{task.title}}</h5>
+              <p class="card-text">{{task.description}}</p>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+
+        {% endfor %}
+      </div>
+
+{% endblock  %}

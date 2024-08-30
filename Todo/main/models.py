@@ -1,20 +1,26 @@
 from django.db import models
+from django.core.validators import MinValueValidator , MaxValueValidator
 
 # Create your models here.
 
 #single not plural --> tables in code should be single 
+
 class Category(models.Model):
     # name varchar constraints  -->> حدودو اللي هتحطها علي ال column
     name = models.CharField(max_length= 50 , unique=True)
     #what is the Difference between null and blank ?
     description = models.TextField(null = True , blank=True)
 
-
-    #dunder Function 
+    #Dunder/Magic Function 
     def __str__(self):
         return self.name
 #1
+    
+# class Tag(models.model):
+#     name = models.CharField(max_length=50 )
 
+#     # category = models.ManyToManyField(Category )
+#     # tst = models.OneToOneField()
 
 
 #m
@@ -28,6 +34,7 @@ class Task(models.Model):
     title=models.CharField(max_length = 100)
     description = models.TextField()
     status = models.CharField(max_length = 12 , choices = STATUS_CHOICES , default = 'PENDING')
+    priority = models.IntegerField(validators=[MinValueValidator(1) , MaxValueValidator(10)] ,null= True , blank= True) 
     due_date = models.DateField(null= True , blank=True)
 
     created_at = models.DateTimeField(auto_now_add = True)
