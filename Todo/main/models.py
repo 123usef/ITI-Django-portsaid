@@ -1,15 +1,20 @@
 from django.db import models
+from django.contrib.auth.models import User
 from django.core.validators import MinValueValidator , MaxValueValidator
 
 # Create your models here.
 
 #single not plural --> tables in code should be single 
+    
+
+
 
 class Category(models.Model):
     # name varchar constraints  -->> حدودو اللي هتحطها علي ال column
     name = models.CharField(max_length= 50 , unique=True)
     #what is the Difference between null and blank ?
     description = models.TextField(null = True , blank=True)
+    user = models.ForeignKey(User , on_delete=models.CASCADE)
 
     #Dunder/Magic Function 
     def __str__(self):
@@ -41,6 +46,8 @@ class Task(models.Model):
     updated_at = models.DateTimeField(auto_now_add = True)
 
     category= models.ForeignKey(Category, on_delete=models.CASCADE)
+    user = models.ForeignKey(User , on_delete=models.CASCADE)
+
     def __str__(self):
         return self.title
 
@@ -52,5 +59,5 @@ class comment(models.Model):
     content= models.TextField()
     created_at = models.DateTimeField(auto_now_add = True)
 
-
+    user = models.ForeignKey(User , on_delete=models.CASCADE)
     task = models.ForeignKey(Task , on_delete = models.CASCADE)

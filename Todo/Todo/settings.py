@@ -60,7 +60,7 @@ TEMPLATES = [
                 #windows --> linux 
                 # \      --> /
                 #C\USERS  --> root 
-
+                #upon perating system 
                 os.path.join(BASE_DIR , 'templates')
         ],
         'APP_DIRS': True,
