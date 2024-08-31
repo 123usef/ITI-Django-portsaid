@@ -83,8 +83,12 @@ WSGI_APPLICATION = 'Todo.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME':'todolistapplication',
+        'USER':'postgres',
+        'PASSWORD':'root',
+        'HOST' : 'localhost',
+        'PORT' : '5432'
     }
 }
 
@@ -118,6 +122,9 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
+ 
+LOGIN_REDIRECT_URL =  '/'
+LOGOUT_REDIRECT_URL = '/'
 
 
 # Static files (CSS, JavaScript, Images)

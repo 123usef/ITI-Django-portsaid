@@ -1,5 +1,4 @@
 from django import forms  
-
 from .models import Task , Category 
 
 
@@ -14,9 +13,6 @@ class CategoryForm(forms.ModelForm):
             'description':forms.Textarea(attrs={'class':'form-control'})
 
         }
-
-
-
 
 
 
